@@ -2,10 +2,11 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../utils/constants';
+import { useEffect } from 'react';
 
 const schema = Yup.object().shape({
     emailId: Yup.string().required("Email is required").email("Email is not valid"),
@@ -15,6 +16,7 @@ const schema = Yup.object().shape({
 const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const userData = useSelector(store => store.user);
 
     const {register, 
         handleSubmit, 
@@ -28,12 +30,15 @@ const Login = () => {
             const response = await axios.post(BASE_URL + 'auth/login', data , 
                 {withCredentials: true}
             );
-            // console.log(response.data);
             dispatch(addUser(response.data.data));
             navigate('/');
         } catch (error) {
-            console.error("Error: " + error.message);
-            alert("Something went wrong");
+            // console.error("Error: " + error?.response?.data?.message);
+            if (error.response.status === 401) {
+                alert("Invalid login credentials.");
+            } else {
+                alert("Server error: " + error.response.status);
+            }
         }
     }
 
