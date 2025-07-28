@@ -2,13 +2,13 @@ import React from 'react'
 
 const UserCard = ({user}) => {
     const {firstName, lastName, about, gender, age, photoUrl} = user;
-    console.log(user);
+    // console.log(user);
 
     return (
         <>
-            <div className="card row card-side bg-base-300 shadow-xl w-1/3 mx-auto">
+            <div className="card row card-side bg-base-300 shadow-xl w-1/3 mx-auto py-2">
                 <figure className='col-3'>
-                    <img className=''
+                    <img className='w-[200px]'
                         src={photoUrl}
                         alt="Feed" />
                 </figure>

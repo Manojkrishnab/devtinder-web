@@ -13,7 +13,7 @@ const Feed = () => {
       if (feed) return;
       try {
         const response = await axios.get(BASE_URL + "user/feed", {withCredentials: true});
-        console.log(response.data.users);
+        // console.log(response.data.users);
         dispatch(addFeed(response.data.users));
       } catch (error) {
         console.error(error);
