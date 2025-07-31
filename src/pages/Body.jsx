@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import { BASE_URL } from '../utils/constants'
@@ -10,6 +10,7 @@ import { addUser } from '../store/slices/userSlice'
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const userData = useSelector(store => store.user);
 
   const fetchUser = async () => {
@@ -20,7 +21,7 @@ const Body = () => {
       })
       // console.log("Body.jsx: " , response.data);
       dispatch(addUser(response.data));
-      navigate('/');
+      navigate(location.pathname);
     } catch (error) {
       if (error.response.status === 401) {
         navigate('/login');
