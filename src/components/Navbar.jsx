@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../store/slices/userSlice";
 import { removeFeed } from "../store/slices/feedSlice";
+import { removeConnections } from "../store/slices/connectionsSlice";
+import { removeRequests } from "../store/slices/requestSlice";
 
 const Navbar = () => {
     const user = useSelector(store => store.user);
@@ -17,7 +19,9 @@ const Navbar = () => {
             });
             dispatch(removeUser());
             dispatch(removeFeed());
-            navigate('/login');
+            dispatch(removeConnections());
+            dispatch(removeRequests());
+            navigate('/auth');
         } catch (error) {
             console.error(error);
         }
@@ -31,7 +35,7 @@ const Navbar = () => {
                 </div>
                 {user && (
                     <div className="flex-none gap-2 flex items-center">
-                        <p className="mr-1">Welcome {user.firstName}</p>
+                        <h2 className="mr-1 text-white text-md">Welcome {user.firstName}</h2>
                         <div className="dropdown dropdown-end mr-5">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">

@@ -36,10 +36,10 @@ const Connections = () => {
                 {connections?.map((connection, index) => {
                     const { firstName, lastName, about, photoUrl } = connection;
                     return (
-                        <div key={index} className='flex gap-5 items-center bg-base-300 w-1/3 p-3 rounded-lg'>
+                        <div key={index} className='flex gap-5 items-center bg-base-300 w-3/4 lg:w-1/3 p-3 rounded-lg'>
                             <img className='w-24 h-24 rounded-full object-cover' src={photoUrl} alt='DevTinder' />
                             <div className=''>
-                                <h2 className='text-white'>{firstName} {lastName}</h2>
+                                <h2 className='text-white font-semibold'>{firstName} {lastName}</h2>
                                 <p className=''>{about}</p>
                             </div>
                         </div>

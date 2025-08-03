@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
@@ -19,12 +19,11 @@ const Body = () => {
       const response = await axios.get(BASE_URL + "profile/view", {
         withCredentials: true
       })
-      // console.log("Body.jsx: " , response.data);
       dispatch(addUser(response.data));
-      navigate(location.pathname);
+      navigate('/');
     } catch (error) {
       if (error.response.status === 401) {
-        navigate('/login');
+        navigate('/auth');
       } else {
         console.error(error);
       }
@@ -33,7 +32,7 @@ const Body = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [window.location.href])
+  }, [])
 
   return (
     <>

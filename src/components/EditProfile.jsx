@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ProfileCard from './ProfileCard';
 import axios from 'axios';
@@ -55,7 +55,7 @@ const EditProfile = ({ user }) => {
             setValue("age", user.age);
             setValue("about", user.about);
         }
-    }, [])
+    }, [user])
 
     let firstNameValue = watch("firstName");
     let lastNameValue = watch("lastName");
@@ -115,7 +115,7 @@ const EditProfile = ({ user }) => {
                                 <span className="label-text text-white">Gender</span>
                             </div>
                             <select {...register('gender')} className="select select-bordered">
-                                <option disabled defaultValue={""}>Select</option>
+                                <option defaultValue={""}>Select</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>

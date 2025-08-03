@@ -1,12 +1,11 @@
-import React from 'react'
 
 const ProfileCard = ({ user }) => {
     return (
         <>
             <div className="card card-compact bg-base-100 w-96 shadow-xl max-w-[80vw]">
                 <figure className='bg-base-300'>
-                    <img className='h-[250px] mt-5'
-                        src={user.photoUrlValue}
+                    <img className='h-44 w-44 rounded-full object-cover mt-5'
+                        src={user.photoUrlValue || null}
                         alt="Shoes" />
                 </figure>
                 <div className="card-body bg-base-300 pt-8">

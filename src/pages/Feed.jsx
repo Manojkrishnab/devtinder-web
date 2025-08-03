@@ -23,10 +23,16 @@ const Feed = () => {
     useEffect(() => {
       fetchFeed();
     }, [])
+
+    if (feed?.length === 0) {
+      return (
+        <h2 className='text-2xl text-white mt-3 text-center'>No new users found!</h2>
+      )
+    }
     
   return (
     <>
-        <h1 className='text-2xl text-center my-2'>Feed Page</h1>
+        <h1 className='text-2xl text-white text-center my-2'>Feed Page</h1>
         {((feed !== null) && (feed.length > 0)) && <UserCard user={feed[0]} />}
     </>
   )
